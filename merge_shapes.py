@@ -99,4 +99,4 @@ russia_fixed = russia.append(
 russia_fixed["region_name"] = russia_fixed.NAME_1.map(SUBJECT_NAMES)
 russia_fixed.reset_index(inplace=True, drop=True)
 
-russia_fixed.to_file("data/gadm36_RUS_1_fixed.json", driver="GeoJSON")
+russia_fixed[['region_name', 'geometry']].to_file("data/gadm36_RUS_1_fixed.json", driver="GeoJSON")
