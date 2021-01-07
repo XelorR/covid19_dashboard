@@ -4,6 +4,7 @@
 
 My personal progect with following goals:
 
+- get data from [official russian source](https://стопкоронавирус.рф/information/)
 - undertand how to create choropleth maps with annotations using python
 - merge complete Rusian shape (with Crimea and Sevastopol) from shapes found on [gadm.org](https://gadm.org/)
 - keep examples somewhere for further references
@@ -43,6 +44,8 @@ vim ./data/data_for_annotations.csv
 ```
 
 or using your favorite spreadsheets editor.
+
+---
 
 **For further references please read [Makefile](./Makefile)**
 
