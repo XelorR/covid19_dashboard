@@ -45,7 +45,13 @@ vim ./data/data_for_annotations.csv
 
 or using your favorite spreadsheets editor.
 
-### Map examples:
+#### If you just need geojson with all 85 federal subjects:
+
+```
+make data/gadm36_RUS_1_fixed.json
+```
+
+## Map examples:
 
 - [geopandas version](geopandas_map_example.ipynb)
 - [plotly version](plotly_map_example.ipynb)
