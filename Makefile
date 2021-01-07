@@ -1,7 +1,7 @@
-all: data/geopandas_map_example.png
+all: data/covid19_map.png
 
 clean:
-	rm -rf data
+	rm -rf data/*.png data/*.zip data/*.json data/covid*
 
 clean_data:
 	rm -rf data/covid* data/geopandas_map_example.png
@@ -26,5 +26,5 @@ data/covid19_data_ru_government_with_additional_variables.csv: calculate_additio
 data/covid19ru_rolling_weeks.csv: calculate_rolling_weeks.py data/covid19_data_ru_government_with_additional_variables.csv
 	python3 $<
 
-data/geopandas_map_example.png: geopandas_map_example.py data/gadm36_RUS_1_fixed.json data/covid19ru_rolling_weeks.csv
+data/covid19_map.png: gen_map.py data/gadm36_RUS_1_fixed.json data/covid19ru_rolling_weeks.csv data/data_for_annotations.csv
 	python3 $<

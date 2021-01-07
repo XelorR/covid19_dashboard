@@ -1,11 +1,11 @@
-import numpy as np
-import pandas as pd
-import geopandas as gpd
 import contextily as ctx
+import geopandas as gpd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 shapes = gpd.read_file("data/gadm36_RUS_1_fixed.json")
 rolling_weeks = pd.read_csv("data/covid19ru_rolling_weeks.csv")
+annotations = pd.read_csv("data/data_for_annotations.csv")
 
 rolling_weeks_sick_new = (
     rolling_weeks.set_index(["region_name", "week"])[["sick_new"]]
@@ -25,12 +25,7 @@ rolling_weeks_sick_new["sick_temp_increase"] = (
 )
 
 gdf = shapes.merge(rolling_weeks_sick_new)
-
-
-employees = rolling_weeks_sick_new[["region_name"]].copy()
-employees["emp_count"] = np.random.randint(0, 50, 85)
-
-gdf_with_employees = gdf.merge(employees)
+gdf_with_employees = gdf.merge(annotations)
 gdf_mercator = gdf_with_employees.to_crs(epsg=3857)
 
 ax = gdf_mercator.plot(
@@ -45,7 +40,7 @@ ax = gdf_mercator.plot(
 
 gdf_mercator.apply(
     lambda x: ax.annotate(
-        s=x.emp_count, xy=x.geometry.representative_point().coords[0], ha="center"
+        s=x.annotation_col, xy=x.geometry.representative_point().coords[0], ha="center"
     ),
     axis=1,
 )
@@ -55,4 +50,4 @@ ax.set_axis_off()
 
 ctx.add_basemap(ax)
 
-plt.savefig("data/geopandas_map_example.png")
+plt.savefig("data/covid19_map.png")
