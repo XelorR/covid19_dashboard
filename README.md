@@ -45,6 +45,11 @@ vim ./data/data_for_annotations.csv
 
 or using your favorite spreadsheets editor.
 
+### Map examples:
+
+- [geopandas version](geopandas_map_example.ipynb)
+- [plotly version](plotly_map_example.ipynb)
+
 ---
 
 **For further references please read [Makefile](./Makefile)**
